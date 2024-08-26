@@ -1,0 +1,141 @@
+@charset "utf-8";
+@import '../common.scss';
+
+
+
+.header_login {
+  display: block;
+  @include size(calc($default-value * 90), calc($default-value * 10) , 0);
+  @include background ($logo-path, map-get($logo-position, "default"));
+  margin: calc($default-value * 43.75) auto calc($default-value * 12) auto;
+  border: 0;
+
+}
+
+main.login {
+  margin: 0 auto calc($default-value * 5) auto;
+  max-width: calc($default-value * 360);
+  min-width: calc($default-value * 256);
+  display: flex;
+  align-items: center;
+  @include dpFlex(column, wrap);
+
+  fieldset {
+    display: flex;
+    @include dpFlex(column, wrap);
+    position: relative;
+    width: calc($default-value * 75);
+
+    label[for="userId"] {
+      position: relative;
+      margin-bottom: calc($default-value * 3);
+   
+      &.edit {
+        button.del {
+          margin-top: $default-value;
+        }
+      }
+
+        input[type="text"] {
+          @extend %loginInput;
+          &.valid {
+            border-color: map-get($validationColor,"correct");
+            background: map-get($grayscale,"white");
+          }
+
+          &.invalid {
+            border-color: map-get($validationColor,"error");
+            background: map-get($grayscale,"white");
+          }
+
+        }
+   }
+
+   label[for="userPw"] {
+    position: relative;
+    margin-bottom: calc($default-value * 4);
+
+    &.edit {
+      button.del {
+        margin-top: $default-value;
+      }
+    }
+
+      input[type="password"] {
+        @extend %loginInput;
+
+        &.valid {
+          border-color: map-get($validationColor,"correct");
+          background: map-get($grayscale,"white");
+        }
+
+        &.invalid {
+          border-color: map-get($validationColor,"error");
+          background: map-get($grayscale,"white");
+        }
+
+      }
+
+    }
+
+    & button {
+      width: 100%;
+      height: calc($default-value * 9.5);
+      border-radius: $default-value;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: map-get($font-size,"h5");
+      line-height: map-get($line-height,"h5");
+      color: map-get($grayscale,"white");
+      margin-bottom: calc($default-value * 3);
+      background: map-get($CIColor,"main");
+    }
+  }
+
+  & section.login {
+    display: flex;
+    @include dpFlex(column, nowrap);
+    width: calc($default-value * 75);
+    justify-content: space-between;
+    margin-top: calc($default-value * 6);
+
+    & a {
+      font-size: map-get($font-size,"h6");
+      line-height: map-get($line-height,"h6");
+      color: map-get($grayscale,"medium");
+      margin: calc($default-value * 1.75) 0 $default-value 0;
+    }
+
+    p {
+      font-size: map-get($font-size,"h6");
+      line-height: map-get($line-height,"h6");
+      color: map-get($grayscale,"medium");
+    }
+  }
+}
+
+footer.login {
+  display: none;
+}
+
+
+.inputContent {
+  label.required {
+    &::before {
+      display: none;
+    }
+  }
+
+  & span {
+    display: flex;
+    @include dpFlex(row, nowrap);
+    align-items: center;
+  }
+}
+
+.valid + p.feedback,
+.invalid + p.feedback {
+  display: block;
+  color: map-get($validationColor, "error");
+}

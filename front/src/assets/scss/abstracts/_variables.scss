@@ -1,0 +1,118 @@
+//color
+$grayscale: (
+  'black': #1f1f1f,
+  'dark': #666,
+  'medium': #888,
+  'light': #ccc,
+  'line': #ddd,
+  'bg': #eee,
+  'lightBg': #f8f8f8,
+  'white': #fff,
+  'dim': rgba(0, 0, 0, 0.4)
+);
+
+$blueLevel: (
+  'level1': #a9bfd3,
+  'level2': #c9d9e8,
+  'level3': #2a8cc9,
+  'level4': #00a8c5
+);
+
+$CIColor: (
+  'main': #005eb8,
+  'subBlue': #e6eff8,
+  'sub': #00b140,
+  'subLight': #78be21,
+  'point': #ffb81c
+);
+
+$validationColor: (
+  'error': #ff3c49,
+  'correct': #00b140,
+  'required': #ff8a5e
+);
+
+$legendColor: (
+  'lgd1': #ff467e,
+  'lgd2': #ff9446,
+  'lgd3': #b3cd4a,
+  'lgd4': #4eb885,
+  'lgd5': #6ed5dc,
+  'lgd6': #73a8d9,
+  'lgd7': #7270b1,
+  'lgd8': #b483d2,
+  'lgd9': #d17070,
+  'lgd10': #71bfad
+);
+
+//font-size
+$font-size: (
+  'h1': 2.4rem,
+  'h2': 2rem,
+  'h3': 1.8rem,
+  'h4': 1.6rem,
+  'h5': 1.4rem,
+  'h6': 1.2rem
+);
+
+//line-height
+$line-height: (
+  'h1': 3rem,
+  'h2': 2.8rem,
+  'h3': 2.6rem,
+  'h4': 2.4rem,
+  'h5': 2.2rem,
+  'h6': 1.6rem
+);
+
+//default multiple
+$default-value: 0.4rem;
+
+//image path
+$sprites-path: '@/assets/img/css_sprites.png';
+$elements-path: '@/assets/img/elements.png';
+$elements-position: (
+  'bullet': 0 0,
+  'selectArrowDown': -2rem 0,
+  'selectArrowUp': -4rem 0,
+  'checkboxInactive': -6rem 0,
+  'checkboxActive': -8rem 0,
+  'checkboxDisabled': -10rem 0,
+  'radiobuttonInactive': -2rem -3rem,
+  'radiobuttonActive': -4rem -3rem,
+  'radiobuttonDisabled': -6rem -3rem,
+  'pagingFirst': 0 -6.5rem,
+  'pagingPrev': -3rem -6.5rem,
+  'pagingNext': -6rem -6.5rem,
+  'pagingLast': -9rem -6.5rem,
+  'popupBtnClose': 0 -3rem,
+  'closeBtn': -8rem -10rem,
+  'closeSmall': -10rem -10rem,
+  'downLoadArrow': 0 -12rem,
+  'attachment': -4rem -12rem,
+  'btnCal': -6rem -12rem,
+  'lnbDown': -8rem -12rem,
+  'lnbUp': -10rem -12rem,
+  'lnbOpen': -12rem -6.5rem,
+  'lnbClose': -12rem -10rem,
+  'attchmentDel': -12rem 0
+);
+$sprites-position: (
+  'moreIcon': -1rem -12.2rem,
+  'linkArrow': -11.8rem -16.6rem
+);
+
+$logo-path: '@/assets/img/logo.png';
+$logo-position: (
+  'default': 0 0,
+  'white': 0 -6rem,
+  'header': 0 -12rem
+);
+
+$msg-path: '@/assets/img/msgSign.png';
+$msg-position: (
+  'error': 0 0,
+  'info': -20rem 0,
+  'info_s': 0 -20rem,
+  'check': -20rem -20rem
+);

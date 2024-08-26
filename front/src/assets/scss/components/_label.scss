@@ -1,0 +1,35 @@
+//card list in label status
+span.list {
+  padding: calc($default-value * 1.75) calc($default-value * 2.5);
+  font-size: map-get($font-size, 'h5');
+  line-height: calc($default-value * 3.5);
+  border-radius: calc($default-value * 1.5);
+  color: map-get($grayscale, 'white');
+  //   margin-bottom: calc($default-value * 5);
+  display: inline-block;
+
+  &.pd4-14 {
+    padding: calc($default-value * 1) calc($default-value * 4);
+  }
+
+  &.labelYellow {
+    background: map-get($CIColor, 'main'); //20240523 색상 수정됨
+  }
+
+  &.labelGreen {
+    background: map-get($CIColor, 'sub');
+  }
+
+  &.labelBlue {
+    background: map-get($blueLevel, 'level1');
+  }
+
+  &.labelGray {
+    background: map-get($grayscale, 'dark');
+  }
+  &.applicationHistory {
+    width: calc($default-value * 12.75);
+    height: calc($default-value * 7);
+    text-align: center;
+  }
+}

@@ -1,0 +1,144 @@
+//button
+
+.large {
+  @extend %btnLarge;
+  color: map-get($grayscale, 'white');
+  background: map-get($CIColor, 'main');
+  border: calc($default-value / 4) solid map-get($CIColor, 'main');
+
+  &:disabled {
+    @extend %btnLarge;
+    @extend %btnDisabled;
+  }
+
+  &.type2 {
+    background: map-get($blueLevel, 'level3');
+    border: calc($default-value / 4) solid map-get($blueLevel, 'level3');
+  }
+}
+
+.largeLine {
+  @extend %btnLarge;
+  color: map-get($CIColor, 'main');
+  background: map-get($grayscale, 'white');
+  border: calc($default-value / 4) solid map-get($CIColor, 'main');
+}
+
+.medium {
+  @extend %btnMedium;
+  color: map-get($grayscale, 'white');
+  background: map-get($blueLevel, 'level3');
+  border: calc($default-value / 4), map-get($blueLevel, 'level3');
+
+  &:disabled {
+    @extend %btnMedium;
+    @extend %btnDisabled;
+  }
+}
+
+.mediumLine {
+  @extend %btnMedium;
+  color: map-get($blueLevel, 'level3');
+  background: map-get($grayscale, 'white');
+  border: calc($default-value / 4) solid map-get($blueLevel, 'level3');
+}
+
+.small {
+  @extend %btnSmall;
+  color: map-get($grayscale, 'white');
+  background: map-get($blueLevel, 'level1');
+  border: calc($default-value / 4) solid map-get($blueLevel, 'level1');
+
+  &:disabled {
+    @extend %btnSmall;
+    @extend %btnDisabled;
+  }
+}
+
+.smallLine {
+  @extend %btnSmall;
+  color: map-get($blueLevel, 'level1');
+  background: map-get($grayscale, 'white');
+  border: calc($default-value / 4) solid map-get($blueLevel, 'level1');
+}
+
+//text link
+a.txtLink {
+  position: relative;
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  color: map-get($CIColor, 'main') !important;
+  padding-right: calc($default-value * 4);
+  text-decoration: underline;
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    @include size(calc($default-value * 4), calc($default-value * 4), 0);
+    @include background($elements-path, map-get($elements-position, 'downLoadArrow'));
+  }
+}
+
+//table add&del btn
+.addDelWrap {
+  display: inline-block;
+  width: calc($default-value * 10);
+  text-align: left;
+
+  button {
+    @include size(calc($default-value * 4), calc($default-value * 4), 0);
+    background: transparent;
+
+    &.add {
+      @include background($elements-path, map-get($elements-position, 'plusBtn'));
+      margin-right: calc($default-value * 2);
+    }
+
+    &.del {
+      @include background($elements-path, map-get($elements-position, 'minusBtn'));
+    }
+  }
+}
+
+//inline
+.inBlock {
+  display: inline-block;
+}
+
+.notiDel {
+  background: transparent;
+  @include size(calc($default-value * 4), calc($default-value * 4), 0);
+  @include background($elements-path, map-get($elements-position, 'closeSmall'));
+}
+
+//fileDel
+.fileDel {
+  background: transparent;
+  @include size(calc($default-value * 4), calc($default-value * 4), 0);
+  @include background($elements-path, map-get($elements-position, 'attchmentDel'));
+}
+
+.tokenTab {
+  &.current {
+    background: map-get($CIColor, 'main');
+    color: #ffffff;
+  }
+  background: transparent;
+  width: calc($default-value * 23.25);
+  height: calc($default-value * 8);
+  padding: calc($default-value) calc($default-value * 2);
+  color: map-get($grayscale, 'medium');
+  border-radius: calc($default-value * 10.25);
+}
+
+// 메인화면 상세 일정 버튼 작업
+// css add : 2024-07-23
+.detailCal {
+  background: map-get($blueLevel, 'level4');
+  padding: calc($default-value) calc($default-value * 4);
+  color: #ffffff;
+  border-radius: calc($default-value * 10.25);
+}

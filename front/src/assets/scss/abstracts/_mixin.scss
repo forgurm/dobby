@@ -1,0 +1,34 @@
+@mixin minMax($minWidth, $maxWidth) {
+    min-width: $minWidth;
+    max-width: $maxWidth;
+}
+
+@mixin dpFlex($direction, $wrap){
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}   
+
+
+@mixin transition($sec) {
+    transition: all $sec;
+}
+
+@mixin posiVal($top, $right, $bottom, $left, $z-index) {
+    top: $top;
+    bottom: $bottom;
+    right: $right;
+    left: $left;
+    z-index: $z-index;
+}
+
+@mixin size($width, $height, $padding) {
+    width: $width;
+    height: $height;
+    padding: $padding;
+}
+
+@mixin background($path, $position){
+    background-image: url(#{$path});
+    background-position: $position;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,331 @@
+div.wrap {
+  display: flex;
+  @include dpFlex(column, wrap);
+  height: 100vh;
+  padding-top: calc($default-value * 19.5);
+}
+main[role='main'] {
+  width: calc(100% - ($default-value * 50));
+  padding-left: calc($default-value * 6);
+  padding-right: calc($default-value * 6);
+  padding-top: calc($default-value * 10);
+  padding-bottom: calc($default-value * 30);
+  height: 100%;
+  // overflow-y: auto;
+  margin: 0 auto;
+  position: relative;
+  transition: all 0.5s ease-out;
+  header[role='mainHeader'] {
+    display: flex;
+    @include dpFlex(row, nowrap);
+    justify-content: space-between;
+    margin-bottom: calc($default-value * 20);
+  }
+
+  &.lnbClose {
+    width: calc(100%);
+    &.colorGray {
+      background: map-get($grayscale, 'lightBg');
+    }
+
+    article[role='contents'] {
+      margin-bottom: calc($default-value * 20);
+
+      section[role='subContent'] {
+        margin-bottom: calc($default-value * 14);
+      }
+    }
+  }
+}
+
+footer[role='footer'] {
+  width: 100%;
+  background: map-get($grayscale, 'lightBg');
+
+  div {
+    max-width: calc($default-value * 300);
+    min-width: calc($default-value * 256);
+    padding-top: calc($default-value * 10);
+    padding-bottom: calc($default-value * 8);
+    margin: 0 auto;
+  }
+
+  nav.footer {
+    margin-bottom: calc($default-value * 10);
+
+    a {
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'black');
+      position: relative;
+
+      &:first-child {
+        padding-right: calc($default-value * 6);
+
+        &::after {
+          display: block;
+          content: '';
+          position: absolute;
+          right: 0;
+          top: calc($default-value * 1.25);
+          width: calc($default-value / 4);
+          height: calc($default-value * 2.5);
+          background: map-get($blueLevel, 'level2');
+        }
+      }
+
+      &:last-child {
+        padding-left: calc($default-value * 6);
+      }
+    }
+  }
+
+  dl.footer {
+    margin-bottom: calc($default-value * 6);
+    & > span {
+      display: flex;
+      @include dpFlex(row, wrap);
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+
+      dt {
+        flex-basis: calc($default-value * 12.5);
+        font-size: inherit;
+        line-height: inherit;
+        color: map-get($grayscale, 'dark');
+        margin-bottom: $default-value;
+        flex-grow: 0;
+      }
+
+      dd {
+        flex-grow: 1;
+        font-size: inherit;
+        line-height: inherit;
+        color: map-get($grayscale, 'medium');
+        margin-bottom: $default-value;
+        margin-left: calc($default-value * 2);
+      }
+    }
+  }
+
+  p.footer {
+    width: 100%;
+    text-align: right;
+    font-size: map-get($font-size, 'h6');
+    line-height: map-get($line-height, 'h6');
+    color: map-get($grayscale, 'medium');
+  }
+}
+
+//공지사항 상세보기 유형
+article[role='noticeDetail'] {
+  header[role='noticeDetailHeader'] {
+    padding-bottom: calc($default-value * 4);
+    border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+
+    h1.ttl {
+      margin-bottom: calc($default-value * 3);
+      padding-left: calc($default-value * 5.5);
+    }
+
+    .data {
+      display: flex;
+      @include dpFlex(row, nowrap);
+      padding-left: calc($default-value * 5.5);
+
+      p {
+        font-size: map-get($font-size, 'h5');
+        line-height: map-get($line-height, 'h5');
+        color: map-get($grayscale, 'dark');
+        position: relative;
+        padding: 0 calc($default-value * 3);
+
+        &:first-child {
+          padding-left: 0;
+
+          &::after {
+            position: absolute;
+            display: block;
+            @include size(calc($default-value / 4), calc($default-value * 2.5), 0);
+            background: map-get($grayscale, 'lineBg');
+            top: calc($default-value * 1.25);
+            right: 0;
+          }
+        }
+
+        span {
+          padding-left: calc($default-value * 2);
+          color: map-get($grayscale, 'medium');
+        }
+      }
+    }
+  }
+
+  main[role='noticeDetailBody'] {
+    padding: calc($default-value * 6) calc($default-value * 5.5) calc($default-value * 14);
+    text-align: left;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'black');
+  }
+
+  footer[role='noticeDetailFooter'] {
+    width: 100%;
+    min-height: calc($default-value * 11);
+    padding: calc($default-value * 3) calc($default-value * 5) calc($default-value * 2.5);
+    background: map-get($grayscale, 'lightBg');
+    display: flex;
+    @include dpFlex(row, nowrap);
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'dark');
+
+    p {
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      padding-right: calc($default-value * 8);
+
+      &.nofile {
+        color: map-get($grayscale, 'medium');
+        padding-right: 0;
+      }
+    }
+
+    a {
+      font-size: inherit;
+      line-height: inherit;
+      color: map-get($blueLevel, 'level3');
+      text-decoration: underline;
+      margin-right: calc($default-value * 3);
+    }
+
+    span {
+      display: flex;
+      @include dpFlex(column, wrap);
+      gap: calc($default-value * 2);
+    }
+
+    &.type2 {
+      background: none;
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+}
+
+//statics
+section[role='graph'] {
+  display: flex;
+  justify-content: center;
+  // margin-bottom: calc($default-value * 10);
+  min-height: calc($default-value * 85);
+  width: 100%;
+  & .graphWrap {
+    display: flex;
+    flex-grow: 1;
+    & .graph {
+      width: 100%;
+    }
+    & .legend {
+      background: red;
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      & .labelWrap.vertical {
+        display: flex;
+        flex-direction: column;
+        & .box {
+          &.led1::before {
+            background-color: map-get($legendColor, 'lgd3');
+            @extend %boxLegend;
+            margin-right: calc($default-value * 3);
+          }
+          &.led2::before {
+            background-color: map-get($legendColor, 'lgd6');
+            @extend %boxLegend;
+            margin-right: calc($default-value * 3);
+          }
+          &.led3::before {
+            background-color: map-get($legendColor, 'lgd2');
+            @extend %boxLegend;
+            margin-right: calc($default-value * 3);
+          }
+          & p {
+            color: map-get($grayscale, 'black');
+            font-size: map-get($font-size, 'h5');
+          }
+        }
+      }
+    }
+  }
+
+  & .graphLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 9rem;
+    width: 40%;
+    & .legend {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      & .labelWrap.vertical {
+        display: flex;
+        flex-direction: column;
+        & .legend.box {
+          &.led1::before {
+            background-color: map-get($legendColor, 'lgd3');
+            @extend %boxLegend;
+            margin-right: calc($default-value * 3);
+          }
+          &.led2::before {
+            background-color: map-get($legendColor, 'lgd6');
+            @extend %boxLegend;
+            margin-right: calc($default-value * 3);
+          }
+          &.led3::before {
+            background-color: map-get($legendColor, 'lgd2');
+            @extend %boxLegend;
+            margin-right: calc($default-value * 3);
+          }
+          & p {
+            margin-left: calc($default-value * 14.5);
+            color: map-get($grayscale, 'black');
+            font-size: map-get($font-size, 'h5');
+          }
+        }
+      }
+    }
+  }
+}
+
+.tab {
+  display: flex;
+  width: 100%;
+
+  &.left {
+    justify-content: flex-start;
+
+    & .tabWrap {
+      display: flex;
+      justify-content: space-between; // Distribute space between buttons
+      width: 100%; // Make sure the wrapper is wide enough
+      background: map-get($grayscale, 'lightBg');
+      border-radius: calc($default-value * 12.5);
+      
+      button {
+        width: calc(100% / 4); // Adjust the button size so all four fit
+        height: calc($default-value * 8);
+        padding: calc($default-value) calc($default-value * 2);
+
+        &.current {
+          background: map-get($CIColor, 'main');
+        }
+      }
+    }
+  }
+}

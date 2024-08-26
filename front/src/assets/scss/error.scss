@@ -1,0 +1,145 @@
+@charset "utf-8";
+@import '@/assets/scss/common.scss';
+
+body {
+  position: relative;
+  background: transparent;
+  min-height: calc($default-value * 237.5);
+
+  &::before {
+      position: absolute;
+      @include posiVal(0,"","",0, 0);
+      display: block;
+      content: '';
+      @include size(100%, $default-value, "");
+      background: map-get($CIColor, "main");
+  }
+
+  &::after {
+      position: absolute;
+      @include posiVal(0,"","",0, -1);
+      display: block;
+      content: '';
+      @include size(100%, 100%, "");
+      background: map-get($grayscale, "lightBg");
+  }
+}
+
+header {
+  @include size(calc($default-value * 76.25), calc($default-value * 20) , "");
+  @include background($logo-path, map-get($logo-position,"medium"));
+  margin: 9.684vh auto calc($default-value * 7) auto;
+  border: 0;
+}
+
+main.msg {
+  @include size(calc($default-value * 90), calc($default-value * 140), "");
+  background: map-get($grayscale, "white");
+  box-shadow: 0 $default-value calc($default-value * 4) rgba(0,0,0, .16);
+  border-radius: calc($default-value * 3);
+  @include minMax(calc($default-value * 90), calc($default-value * 90));
+  position: relative;
+  margin: 0 auto;
+
+  &::after {
+      @include posiVal(calc($default-value * 3.75), "", "", 0, 997);
+      background: map-get($blueLevel, "level2");
+      @extend %msgBeforeAfter;
+  }
+
+  &::before {
+      @include posiVal(0,"","",0, 998);
+      @extend %msgBeforeAfter;
+  }
+
+  &.wraning::before {
+      @include background($msg-path, map-get($msg-position, "wraning"));
+      background-color: map-get($blueLevel, "level4");
+  }
+
+  &.error::before {
+      @include background($msg-path, map-get($msg-position, "error"));
+      background-color: map-get($blueLevel, "level4");
+  }
+
+  &.info::before {
+      @include background($msg-path, map-get($msg-position, "info"));
+      background-color: map-get($blueLevel, "level4");
+  }
+
+  header.top {
+      @include size(calc($default-value * 90), calc($default-value * 63.75),"");
+      position: relative;
+      margin: 0 0 calc($default-value * 10) 0;
+      font-size: map-get($font-size, "h1");
+      line-height: map-get($line-height, "h1");
+      color: map-get($grayscale, "black");
+      padding-top: calc($default-value * 11);
+      padding-left: calc($default-value * 8);
+      padding-bottom: calc($default-value * 6);
+      @include minMax(calc($default-value * 90), calc($default-value * 90));
+      display: block;
+      background: none;
+      z-index: 999;
+      border-radius: calc($default-value * 3);
+  }
+
+  h1 {
+      text-align: center;
+      font-weight: normal;
+      font-size: map-get($font-size, "h3");
+      line-height: map-get($line-height, "h3");
+      color: map-get($grayscale, "black");
+      margin-bottom: calc($default-value * 3);
+      padding: 0 calc($default-value * 5);
+  }
+
+  section.body {
+      font-size: map-get($font-size, "h5");
+      line-height: map-get($line-height, "h5");
+      color: map-get($grayscale, "dark");
+      margin-bottom: calc($default-value * 4);
+      padding: 0 calc($default-value * 5);
+  }
+
+  section.btnArea {
+      display: flex;
+      @include dpFlex(row, nowrap);
+      justify-content: space-between;
+      padding: 0 calc($default-value * 5);
+
+      button {
+          @include size(100%, calc($default-value * 9.5), "");
+          color: map-get($grayscale, "white");
+          background: map-get($CIColor, "main");
+          border: calc($default-value / 4) solid map-get($CIColor, "main");
+          border-radius: $default-value;
+          font-size: map-get($font-size, "h5");
+          line-height: map-get($line-height, "h5");
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &.line {
+              background: map-get($grayscale, "white");
+              color: map-get($CIColor, "main");
+          }
+
+          & + button {
+              margin-left: calc($default-value * 3);
+          }
+      }
+  }
+}
+
+
+footer {
+  font-size: map-get($font-size, "h6");
+  line-height: map-get($line-height, "h6");
+  color: map-get($grayscale, "dark");
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: calc($default-value * 10);
+  left: 0;
+}

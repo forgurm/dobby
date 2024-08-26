@@ -1,0 +1,573 @@
+//selectBox custom
+.selectBox {
+  min-width: calc($default-value * 2.5);
+  position: relative;
+  display: inline-flex;
+
+  button {
+    @include size(
+      100%,
+      calc($default-value) * 7,
+      $default-value calc($default-value) * 7 calc($default-value / 2) calc($default-value * 3)
+    );
+    font-family: inherit;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'black');
+    text-align: left;
+    position: relative;
+    background: map-get($grayscale, 'lightBg');
+    border-radius: $default-value;
+
+    &.bgWhite {
+      background: map-get($grayscale, 'white');
+      color: map-get($grayscale, 'medium');
+    }
+
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      @include posiVal(calc($default-value * 1.5), calc($default-value * 4), '', '', 999);
+      @include size(calc($default-value * 4), calc($default-value * 4), 0);
+      @include background($elements-path, map-get($elements-position, 'selectArrowDown'));
+    }
+
+    &.selected {
+      border-radius: 0;
+      border-top-left-radius: $default-value;
+      border-top-right-radius: $default-value;
+
+      &::before {
+        @include size(calc($default-value * 4), calc($default-value * 4), 0);
+        @include background($elements-path, map-get($elements-position, 'selectArrowUp'));
+      }
+    }
+  }
+
+  ul {
+    width: inherit;
+    position: absolute;
+    z-index: 999;
+    border-top: 0;
+    border-bottom-left-radius: $default-value;
+    border-bottom-right-radius: $default-value;
+    top: calc($default-value * 6.75);
+
+    li {
+      background: map-get($CIColor, 'subBlue');
+      padding: $default-value calc($default-value * 7) calc($default-value / 2)
+        calc($default-value * 3);
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'black');
+      border-bottom: calc($default-value / 4) solid map-get($blueLevel, 'level2');
+      cursor: pointer;
+
+      &:last-child {
+        border-bottom-left-radius: $default-value;
+        border-bottom-right-radius: $default-value;
+        border-bottom: 0;
+      }
+
+      &:hover {
+        color: map-get($CIColor, 'sub');
+      }
+    }
+  }
+
+  & + label.edit,
+  & + .datePickerWrap {
+    display: inline-flex;
+  }
+}
+
+//input
+input[type='tel'],
+input[type='time'],
+input[type='text'],
+input[type='password'],
+input[type='search'],
+input[type='email'],
+input[type='url'],
+input[type='number'],
+input[type='date'] {
+  @extend %appearance;
+  @extend %input;
+  color: map-get($grayscale, 'dark');
+  background: map-get($grayscale, 'lightBg');
+}
+
+input[type='tel']:read-only,
+input[type='time']:read-only,
+input[type='text']:read-only,
+input[type='password']:read-only,
+input[type='search']:read-only,
+input[type='email']:read-only,
+input[type='url']:read-only,
+input[type='number']:read-only,
+input[type='date']:read-only {
+  @extend %appearance;
+  @extend %input;
+  color: map-get($grayscale, 'dark');
+  background: map-get($grayscale, 'white');
+  border: none;
+}
+
+input[type='tel']:disabled,
+input[type='time']:disabled,
+input[type='text']:disabled,
+input[type='password']:disabled,
+input[type='search']:disabled,
+input[type='email']:disabled,
+input[type='url']:disabled,
+input[type='number']:disabled,
+input[type='date']:disabled {
+  @extend %appearance;
+  @extend %input;
+  color: map-get($blueLevel, 'level2');
+  background: map-get($CIColor, 'subBlue');
+}
+
+// file upload custom
+.fileUpload {
+  display: flex;
+  @include dpFlex(row, nowrap);
+  color: map-get($grayscale, 'medium');
+  align-items: center;
+
+  input:not([type='file']) {
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    @include size(
+      calc(100% - ($default-value * 20.25)),
+      calc($default-value) * 7,
+      $default-value calc($default-value * 3) calc($default-value / 2)
+    );
+    margin-left: $default-value;
+    color: map-get($grayscale, 'black');
+    background: map-get($grayscale, 'white');
+    width: calc(100% - calc($default-value) * 20.25);
+
+    &.val {
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      height: calc($default-value * 7);
+      margin-right: $default-value;
+      color: map-get($grayscale, 'medium');
+      border: calc($default-value / 4) solid transparent;
+      padding: $default-value 0 calc($default-value / 2) calc($default-value * 3);
+    }
+  }
+
+  label:not(.dot) {
+    display: block;
+    padding: calc($default-value * 1.5) calc($default-value * 3.5) calc($default-value * 1.5);
+    height: calc($default-value * 7);
+    text-align: center;
+    font-size: map-get($font-size, 'h6');
+    line-height: map-get($line-height, 'h6');
+    color: map-get($blueLevel, 'level3');
+    border-radius: $default-value;
+    background: map-get($grayscale, 'white');
+    border: calc($default-value / 4) solid map-get($blueLevel, 'level3');
+  }
+
+  &.disabled {
+    label:not(.dot) {
+      @extend %btnDisabled;
+    }
+
+    input:not([type='file']) {
+      color: map-get($grayscale, 'dark');
+      border: 0;
+    }
+  }
+
+  & + span.file {
+    display: flex;
+    @include dpFlex(row, nowrap);
+    align-items: center;
+  }
+}
+
+input[type='file'] {
+  @extend %alternate;
+}
+
+input.required {
+  &.correct {
+    border-color: map-get($validationColor, 'correct') !important;
+    color: map-get($validationColor, 'correct');
+    border-style: solid;
+    border-width: calc($default-value / 4);
+
+    & + p.feedback {
+      display: block;
+      color: map-get($validationColor, 'correct');
+    }
+  }
+
+  &.error {
+    border-color: map-get($validationColor, 'error') !important;
+    color: map-get($validationColor, 'error');
+    border-style: solid;
+    border-width: calc($default-value / 4);
+
+    & + p.feedback {
+      display: block;
+      color: map-get($validationColor, 'error');
+    }
+  }
+}
+
+label.required input[type='tel'].required,
+label.required input[type='time'].required,
+label.required input[type='text'].required,
+label input[type='password'].required,
+label.required input[type='search'].required,
+label.required input[type='email'].required,
+label.required input[type='url'].required,
+label.required input[type='number'].required,
+label.required input[type='date'].required {
+  border-color: map-get($validationColor, 'required');
+}
+
+label[for='userId'].required {
+  & input[type='text'] {
+    border-color: map-get($blueLevel, 'level2');
+  }
+}
+
+label[for='userPw'].required {
+  & input[type='password'] {
+    border-color: map-get($blueLevel, 'level2');
+  }
+}
+
+label.required:not([for='userId'], [for='userPw']) {
+  position: relative;
+  min-height: calc($default-value * 9);
+  display: block;
+
+  &::before {
+    @extend %labelDot;
+  }
+}
+
+label {
+  p.feedback {
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    margin-top: calc($default-value * 2);
+  }
+}
+
+//textarea
+textarea {
+  min-height: calc($default-value * 2.25);
+  background: map-get($grayscale, 'lightBg');
+  border-radius: $default-value;
+  border: none;
+  padding: calc($default-value * 4) calc($default-value * 2);
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  color: map-get($grayscale, 'black');
+  resize: none;
+  &:read-only {
+    background: map-get($CIColor, 'subBlue');
+    color: map-get($blueLevel, 'level2');
+  }
+}
+
+//checkbox, radiobutton
+input[type='radio'] {
+  @extend %appearance;
+  cursor: pointer;
+  @include size(calc($default-value * 4), calc($default-value * 4), 0);
+  @include background($elements-path, map-get($elements-position, 'radiobuttonInactive'));
+
+  & + label {
+    @extend %chkRadio;
+    color: map-get($grayscale, 'dark');
+  }
+
+  &:checked {
+    @include background($elements-path, map-get($elements-position, 'radiobuttonActive'));
+
+    & + label {
+      @extend %chkRadio;
+      color: map-get($grayscale, 'black');
+    }
+  }
+
+  &:disabled {
+    @include background($elements-path, map-get($elements-position, 'radiobuttonDisabled'));
+
+    & + label {
+      @extend %chkRadio;
+      color: map-get($blueLevel, 'level1');
+    }
+  }
+}
+
+input[type='checkbox'] {
+  @extend %appearance;
+  cursor: pointer;
+  @include size(calc($default-value * 4), calc($default-value * 4), 0);
+  @include background($elements-path, map-get($elements-position, 'checkboxInactive'));
+
+  & + label {
+    color: map-get($grayscale, 'dark');
+    @extend %chkRadio;
+  }
+
+  &:checked {
+    @include background($elements-path, map-get($elements-position, 'checkboxActive'));
+
+    & + label {
+      @extend %chkRadio;
+      color: map-get($grayscale, 'black');
+    }
+  }
+
+  &:disabled {
+    @include background($elements-path, map-get($elements-position, 'checkboxDisabled'));
+
+    & + label {
+      @extend %chkRadio;
+      color: map-get($blueLevel, 'level1');
+    }
+  }
+}
+
+//category select
+.cateSelectWrap {
+  display: flex;
+  @include dpFlex(row, wrap);
+  gap: $default-value ($default-value * 2);
+
+  .cateSelect {
+    padding: calc($default-value * 2) calc($default-value * 2) calc($default-value * 1.5);
+    border: calc($default-value / 4) solid map-get($blueLevel, 'level1');
+    border-radius: calc($default-value * 4);
+    font-size: map-get($font-size, 'h6');
+    line-height: map-get($line-height, 'h6');
+    color: map-get($blueLevel, 'level1');
+
+    & > button.del {
+      margin-left: $default-value;
+      @include size(calc($default-value * 4), calc($default-value * 4), 0);
+      background: transparent;
+      position: relative;
+
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        @include size(calc($default-value * 4), calc($default-value * 4), 0);
+        @include background($elements-path, map-get($elements-position, 'closeBtn'));
+      }
+    }
+  }
+}
+
+//closeBtn iclude input
+label.edit {
+  position: relative;
+  min-height: calc($default-value * 7.5);
+  display: block;
+
+  & button.del {
+    @include size(calc($default-value * 4), calc($default-value * 4), 0);
+    @include background($elements-path, map-get($elements-position, 'closeBtn'));
+    background-color: transparent;
+    position: absolute;
+    right: calc($default-value * 3);
+    top: calc($default-value * 2);
+  }
+
+  & input[type='text'] {
+    padding-right: calc($default-value * 8);
+    text-align: right;
+  }
+
+  & button.add {
+    @include size(calc($default-value * 4), calc($default-value * 4), 0);
+    @include background($elements-path, map-get($elements-position, 'plusBtn'));
+    background-color: transparent;
+    position: absolute;
+    left: calc($default-value * 3);
+    top: calc($default-value * 1.5);
+  }
+
+  & button.remove {
+    @include size(calc($default-value * 4), calc($default-value * 4), 0);
+    @include background($elements-path, map-get($elements-position, 'minusBtn'));
+    background-color: transparent;
+    position: absolute;
+    left: calc($default-value * 3);
+    top: calc($default-value * 1.5);
+  }
+}
+
+//agree box
+.agreeBox {
+  @extend %greyBox;
+
+  & p {
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'dark');
+    margin-bottom: calc($default-value * 4);
+    & a {
+      color: map-get($grayscale, 'black');
+    }
+  }
+}
+
+//defalut input bottom comment
+.comment {
+  font-size: map-get($font-size, 'h6') !important;
+  line-height: map-get($line-height, 'h6') !important;
+  color: map-get($grayscale, 'medium');
+
+  &:empty {
+    display: none;
+  }
+
+  &.correct {
+    color: map-get($validationColor, 'correct') !important;
+  }
+
+  &.error {
+    color: map-get($validationColor, 'error') !important;
+  }
+}
+
+//login required title
+h5.required {
+  display: inline-block;
+  position: relative;
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  color: map-get($grayscale, 'black');
+  font-weight: normal;
+  margin-bottom: calc($default-value * 1.5);
+
+  &::after {
+    position: absolute;
+    display: block;
+    content: '';
+    right: calc($default-value * -1);
+    top: 0;
+    width: $default-value;
+    height: $default-value;
+    border-radius: $default-value;
+    background: map-get($validationColor, 'required');
+  }
+}
+
+p.feedback {
+  display: none;
+}
+
+//date picker
+.datePickerWrap {
+  display: inline-flex;
+  @include dpFlex(row, nowrap);
+  position: relative;
+  align-items: center;
+
+  &.required {
+    &::before {
+      @extend %labelDot;
+      content: '';
+    }
+  }
+
+  & .datePicker {
+    min-width: calc($default-value * 35);
+    height: calc($default-value * 7);
+    border-radius: $default-value;
+    padding: $default-value($default-value * 3) $default-value;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'medium');
+    position: relative;
+    background: map-get($grayscale, 'lightBg');
+  }
+
+  .dp__input {
+    min-width: calc($default-value * 35);
+    height: calc($default-value * 7);
+    border-radius: $default-value;
+    border: none;
+    padding: $default-value($default-value * 3) $default-value;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'medium');
+    position: relative;
+    background: map-get($grayscale, 'lightBg');
+  }
+  & button.cal {
+    background: transparent;
+    @include size(calc($default-value * 4), calc($default-value * 4), 0);
+    @include background($elements-path, map-get($elements-position, 'btnCal'));
+    position: absolute;
+    right: calc($default-value * 3);
+    top: calc($default-value * 1.75);
+  }
+  .input-slot-image {
+    background: transparent;
+    @include size(calc($default-value * 4), calc($default-value * 4), 0);
+    @include background($elements-path, map-get($elements-position, 'btnCal'));
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10%;
+  }
+  svg {
+    display: none;
+  }
+  .dp__input_icon {
+    inset-inline-start: unset;
+    right: 10%;
+
+    & button.cal {
+      background: transparent;
+      @include size(calc($default-value * 4), calc($default-value * 4), 0);
+      @include background($elements-path, map-get($elements-position, 'btnCal'));
+      position: absolute;
+      right: calc($default-value * 3);
+      top: calc($default-value * 1.75);
+    }
+  }
+}
+
+//description box
+.descriptionBox {
+  @extend %greyBox;
+  margin: calc($default-value * 20) 0;
+
+  & p {
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'dark');
+    margin-bottom: calc($default-value * 1.5);
+    & a {
+      color: map-get($grayscale, 'black');
+    }
+  }
+}
+
+//table footer despcription
+.cautionBlue {
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  color: map-get($blueLevel, 'level3');
+  font-weight: 500;
+  margin-top: calc($default-value * 1.5);
+}

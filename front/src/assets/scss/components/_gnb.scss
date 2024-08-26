@@ -1,0 +1,282 @@
+//GNB, LNB
+div.gnb {
+  border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+  @include size(100%, calc($default-value * 19.5), 0);
+  min-width: calc($default-value * 256);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: map-get($grayscale, 'white');
+}
+
+section.header {
+  display: flex;
+  @include dpFlex(row, nowrap);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  height: inherit;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include background($logo-path, map-get($logo-position, 'header'));
+    @include size(calc($default-value * 45), calc($default-value * 5), 0);
+    margin-left: calc($default-value * 6);
+    padding-top: calc($default-value * 7.5);
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: calc($default-value * 6);
+
+    a {
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'dark');
+      position: relative;
+
+      &:first-child {
+        padding-right: calc($default-value * 6);
+
+        &::after {
+          display: block;
+          content: '';
+          position: absolute;
+          right: 0;
+          top: calc($default-value * 1.25);
+          @include size(calc($default-value / 4), calc($default-value * 3), 0);
+          background: map-get($grayscale, 'line');
+        }
+      }
+
+      &:last-child {
+        padding-left: calc($default-value * 6);
+      }
+    }
+  }
+}
+
+//lnb
+aside.lnb {
+  position: relative;
+  border-right: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+  @include size(
+    calc($default-value * 50),
+    calc(100vh - ($default-value * 19.5)),
+    0 0 calc($default-value * 3) 0
+  );
+  display: flex;
+  @include dpFlex(column, wrap);
+  justify-content: space-between;
+
+  &.close {
+    left: -20rem;
+    width: 0;
+  }
+
+  main[role='lnb'] {
+    position: relative;
+
+    & > button {
+      position: absolute;
+      left: calc($default-value * 50);
+      top: 0;
+      z-index: 99;
+      @include size(calc($default-value * 7), calc($default-value * 9), 0);
+      border: 0;
+      background: none;
+
+      &.open {
+        @include background($elements-path, map-get($elements-position, 'lnbOpen'));
+      }
+
+      &.close {
+        @include background($elements-path, map-get($elements-position, 'lnbClose'));
+      }
+    }
+
+    ul.depth1 {
+      display: flex;
+      @include dpFlex(column, nowrap);
+      justify-content: center;
+      & > li {
+        width: 100%;
+        min-height: calc($default-value * 8.5);
+        display: flex;
+        @include dpFlex(column, nowrap);
+        position: relative;
+
+        & a {
+          width: 100%;
+          height: 100%;
+          min-height: calc($default-value * 8.5);
+          display: flex;
+          @include dpFlex(column, nowrap);
+          justify-content: center;
+          padding: 0 calc($default-value * 6);
+          font-size: map-get($font-size, 'h5');
+          line-height: map-get($line-height, 'h5');
+          color: map-get($grayscale, 'dark');
+          position: relative;
+        }
+
+        &.more {
+          & > a::after {
+            content: '';
+            display: block;
+            position: absolute;
+            @include size(calc($default-value * 4), calc($default-value * 4), 0);
+            @include background($elements-path, map-get($elements-position, 'lnbDown'));
+            right: calc($default-value * 6);
+            top: calc($default-value * 2.75);
+          }
+        }
+
+        &.current {
+          & > a {
+            border-left: calc($default-value / 2) solid map-get($CIColor, 'main');
+            background: map-get($CIColor, 'subBlue');
+            color: map-get($CIColor, 'main');
+          }
+
+          &.more {
+            & > a::after {
+              content: '';
+              display: block;
+              position: absolute;
+              @include size(calc($default-value * 4), calc($default-value * 4), 0);
+              @include background($elements-path, map-get($elements-position, 'lnbUp'));
+              right: calc($default-value * 6);
+              top: calc($default-value * 2.75);
+            }
+          }
+
+          & > ul.depth2 {
+            display: flex !important;
+            @include dpFlex(column, nowrap);
+            justify-content: center;
+          }
+        }
+
+        & ul.depth2 {
+          display: none;
+          background: map-get($grayscale, 'lightBg');
+          padding: calc($default-value * 1.5) calc($default-value * 4) calc($default-value * 1.5)
+            calc($default-value * 2);
+
+          & > li {
+            width: 100%;
+            height: calc($default-value * 5.5);
+            margin-bottom: calc($default-value * 1.5);
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            &.current {
+              a {
+                border-left: 0 !important;
+                background: none !important;
+                color: map-get($CIColor, 'main');
+              }
+            }
+
+            & a {
+              width: 100%;
+              height: 100%;
+              display: block;
+              font-size: map-get($font-size, 'h5');
+              line-height: map-get($line-height, 'h5');
+              color: map-get($grayscale, 'dark');
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    padding: 0 calc($default-value * 6);
+
+    nav {
+      margin-bottom: calc($default-value * 4);
+
+      a {
+        font-size: map-get($font-size, 'h5');
+        line-height: map-get($line-height, 'h5');
+        color: map-get($grayscale, 'medium');
+        margin-bottom: calc($default-value * 2.5);
+        display: block;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    p {
+      font-size: map-get($font-size, 'h6');
+      line-height: map-get($line-height, 'h6');
+      color: map-get($grayscale, 'light');
+    }
+  }
+}
+
+//2depth menu tab
+nav.depth2 {
+  display: inline-flex;
+  @include dpFlex(row, nowrap);
+  border-bottom: calc($default-value / 4) solid map-get($blueLevel, 'level2');
+  width: 100%;
+}
+
+nav.depth2 {
+  a {
+    min-width: calc($default-value * 50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    height: calc($default-value * 9);
+    color: map-get($grayscale, 'medium');
+    background: map-get($grayscale, 'bg');
+    margin-left: calc($default-value * 1.25);
+    border-top-left-radius: $default-value;
+    border-top-right-radius: $default-value;
+    @include transition(0.2s);
+
+    &.current {
+      background: map-get($CIColor, 'subBlue');
+      color: map-get($CIColor, 'main');
+    }
+  }
+}
+
+//navigation path
+nav.path {
+  display: flex;
+  @include dpFlex(row, nowrap);
+  align-items: center;
+
+  a {
+    font-size: map-get($font-size, 'h6');
+    line-height: map-get($line-height, 'h6');
+
+    &.home {
+      color: map-get($blueLevel, 'level3');
+    }
+
+    &.depth {
+      color: map-get($grayscale, 'medium');
+    }
+  }
+}

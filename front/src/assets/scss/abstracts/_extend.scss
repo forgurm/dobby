@@ -1,0 +1,179 @@
+%appearance {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+%ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+//hidden
+%alternate {
+  position: absolute;
+  @include posiVal(0, 0, 0, calc($default-value * 250 * -1), 999);
+  @include size(0, 0, 0);
+  overflow: hidden;
+}
+
+//required display
+%labelDot {
+  position: absolute;
+  @include posiVal(calc($default-value * 2 * -1), 0, 0, $default-value, 998);
+  display: block;
+  content: '';
+  @include size($default-value, $default-value, 0);
+  border-radius: $default-value;
+  background: map-get($validationColor, 'required');
+}
+
+//scrollbar
+%scroll {
+  width: calc($default-value * 1.5);
+  border-radius: $default-value;
+}
+
+//input
+%input {
+  padding: calc($default-value * 1.25) calc($default-value * 3) calc($default-value * 1.25);
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  border-radius: $default-value;
+}
+
+%chkRadio {
+  font-size: map-get($font-size, 'h6');
+  line-height: map-get($line-height, 'h6');
+  padding-right: calc($default-value * 5);
+  padding-left: $default-value;
+  min-width: calc($default-value * 15.75);
+}
+
+//button
+%btnLarge {
+  padding: calc($default-value * 2) calc($default-value * 4.5) calc($default-value * 1.5);
+  min-width: calc($default-value * 25.5);
+  text-align: center;
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  border-radius: $default-value;
+}
+
+%btnMedium {
+  padding: calc($default-value / 4 * 5) calc($default-value * 3.5) calc($default-value / 4 * 5);
+  height: calc($default-value * 7);
+  text-align: center;
+  font-size: map-get($font-size, 'h6');
+  line-height: map-get($line-height, 'h6');
+  border-radius: $default-value;
+}
+
+%btnSmall {
+  padding: calc($default-value / 4 * 5) calc($default-value * 3.5) calc($default-value / 4 * 5);
+  min-width: calc($default-value * 16);
+  height: calc($default-value * 8);
+  text-align: center;
+  font-size: map-get($font-size, 'h6');
+  line-height: map-get($line-height, 'h6');
+  border-radius: $default-value;
+}
+
+%btnDisabled {
+  color: map-get($blueLevel, 'level1');
+  background: map-get($CIColor, 'subBlue');
+  border: calc($default-value / 4) solid map-get($blueLevel, 'level2');
+}
+
+%msgBeforeAfter {
+  position: absolute;
+  display: block;
+  content: '';
+  @include size(calc($default-value * 90), calc($default-value * 63.75), '');
+  border-top-left-radius: calc($default-value * 3);
+  border-top-right-radius: calc($default-value * 3);
+  border-bottom-left-radius: calc($default-value * 37.5);
+  border-bottom-right-radius: 0;
+}
+
+%gnbA {
+  border-bottom: calc($default-value / 2) solid map-get($CIColor, 'main');
+  padding: calc($default-value * 3) calc($default-value * 5) calc($default-value * 3.5);
+  height: calc($default-value * 14.5);
+}
+
+%depth3Abefore {
+  position: absolute;
+  display: block;
+  content: '';
+  height: calc($default-value / 2);
+  background: map-get($CIColor, 'subLight');
+  top: calc($default-value / 2 * -1);
+  left: 0;
+  @include transition(0.3s);
+}
+
+%cardListTable {
+  padding-bottom: calc($default-value * 2.5);
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  color: map-get($grayscale, 'dark');
+  font-weight: 500;
+}
+
+%loginInput {
+  @include size(
+    calc($default-value * 75),
+    calc($default-value * 9),
+    calc($default-value * 3) calc($default-value * 3) calc($default-value * 2)
+      calc($default-value * 3)
+  );
+  border-radius: $default-value;
+  font-size: map-get($font-size, 'h5');
+  line-height: map-get($line-height, 'h5');
+  color: map-get($grayscale, 'black');
+  text-align: left;
+  border-width: calc($default-value / 4);
+  border-style: solid;
+}
+
+%loginInputLabel {
+  display: block;
+  position: absolute;
+  z-index: 999;
+  width: calc($default-value * 4);
+  height: calc($default-value * 4);
+  left: calc($default-value * 3);
+  top: calc($default-value * 2.5);
+}
+
+//grey box
+%greyBox {
+  width: 100%;
+  padding: calc($default-value * 5);
+  border-radius: $default-value;
+  background: map-get($grayscale, 'lightBg');
+}
+
+//boxLegend
+%boxLegend {
+  content: '';
+  position: relative;
+  display: inline-block;
+  @include size(calc($default-value * 3), calc($default-value * 3), 0);
+  border-radius: calc($default-value / 2);
+  margin-right: calc($default-value * 1.25);
+  top: calc($default-value / 3);
+}
+
+//lineLegend
+%lineLegend {
+  content: '';
+  position: relative;
+  display: inline-block;
+  @include size(calc($default-value * 3), calc($default-value / 2), 0);
+  margin-right: calc($default-value * 1.25);
+  top: 50%;
+}

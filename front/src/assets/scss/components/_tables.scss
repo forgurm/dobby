@@ -1,0 +1,838 @@
+//search table
+.search {
+  border: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+  border-radius: 0 0 calc($default-value * 2) calc($default-value * 2);
+  background: map-get($grayscale, 'white');
+  box-shadow: 0 $default-value calc($default-value * 4) rgba(230, 239, 248, 0.4);
+
+  table tr {
+    th {
+      border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+      padding: calc($default-value * 2) calc($default-value * 3) calc($default-value * 2)
+        calc($default-value * 3);
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'dark');
+      text-align: left;
+      font-weight: 500;
+    }
+
+    td {
+      border-bottom: calc($default-value / 4) solid map-get($grayscale, 'bg');
+      padding: calc($default-value * 2);
+      text-align: left;
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'medium');
+      font-weight: 500;
+    }
+
+    &:last-child {
+      th {
+        border-bottom: 0;
+      }
+
+      td {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.searchBtnArea {
+  display: flex;
+  justify-content: center;
+  padding: calc($default-value * 3) calc($default-value) 0;
+
+  button {
+    margin-right: calc($default-value * 2);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+//vertical table
+table.vertical {
+  border-top-width: calc($default-value / 2);
+  border-bottom-width: calc($default-value / 4);
+  border-style: solid;
+  border-top-color: map-get($blueLevel, 'level3');
+  border-bottom-color: map-get($blueLevel, 'level1');
+  border-left: 0;
+  border-right: 0;
+  width: 100%;
+  table-layout: fixed;
+
+  thead tr th {
+    padding: calc($default-value * 3.75) calc($default-value * 4);
+    font-weight: 500;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h4');
+    position: relative;
+    color: map-get($grayscale, 'black');
+    background: map-get($CIColor, 'subBlue');
+
+    &::after {
+      display: block;
+      position: absolute;
+      content: '';
+      top: calc($default-value) * 4.25;
+      right: 0;
+      z-index: 999;
+      @include size(calc($default-value / 4), calc($default-value * 3), 0);
+      background: map-get($blueLevel, 'level2');
+    }
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  tbody tr {
+    & td {
+      border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+      padding: calc($default-value * 3) calc($default-value * 4);
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'medium');
+      @extend %ellipsis;
+      text-align: left;
+      font-weight: 400;
+
+      & a {
+        color: map-get($grayscale, 'dark');
+        font-weight: 500;
+
+        &.underline {
+          color: map-get($blueLevel, 'level3');
+          font-weight: 500;
+          text-decoration: underline;
+        }
+      }
+
+      & a.notice {
+        color: map-get($blueLevel, 'level3');
+        text-decoration: underline;
+        max-width: calc($default-value * 148);
+        @extend %ellipsis;
+        display: inline-block;
+        // css update : 상단고정 일 때, 사용 (2024-07-12)
+        &.fix {
+          font-weight: 700;
+        }
+      }
+
+      & button.attachment {
+        @include size(calc($default-value * 4), calc($default-value * 4), 0);
+        @include background($elements-path, map-get($elements-position, 'attachment'));
+        background-color: transparent;
+        position: relative;
+        top: calc($default-value / 2);
+        vertical-align: top;
+      }
+    }
+
+    &:last-child {
+      & td {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  &.type2 {
+    & th {
+      padding: calc($default-value * 4);
+      color: map-get($grayscale, 'black');
+    }
+
+    & tbody tr:first-child {
+      & td {
+        padding-top: calc($default-value * 4);
+      }
+    }
+    & td {
+      border: none;
+      padding-top: calc($default-value * 2);
+      padding-bottom: calc($default-value * 2);
+
+      & a {
+        color: map-get($CIColor, 'main');
+        text-decoration: underline;
+
+        &.center {
+          display: block;
+          text-align: center;
+        }
+      }
+
+      &.nodata {
+        padding-bottom: calc($default-value * 4);
+      }
+    }
+  }
+  &.type2 {
+    border-top: 0;
+
+    & th {
+      border-bottom: 0;
+    }
+
+    & td {
+      font-weight: 500;
+      color: map-get($grayscale, 'dark');
+      border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+    }
+  }
+}
+
+//horizontal table
+table.horizontal {
+  border-top-width: calc($default-value / 2);
+  border-bottom-width: calc($default-value / 4);
+  border-style: solid;
+  border-top-color: map-get($blueLevel, 'level3');
+  border-bottom-color: map-get($blueLevel, 'level1');
+  border-left: 0;
+  border-right: 0;
+  width: 100%;
+  table-layout: fixed;
+
+  tr {
+    th {
+      border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'dark');
+      padding: calc($default-value * 4.75) calc($default-value * 5);
+      font-weight: normal;
+      vertical-align: top;
+    }
+
+    td {
+      border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+      padding: calc($default-value * 4) calc($default-value * 3) calc($default-value * 4)
+        calc($default-value * 3);
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'dark');
+
+      & img {
+        max-width: 100%;
+        border-radius: $default-value;
+      }
+      // css update: 발행인 등록 사업장소재지 추가로 인해 작업 (2024-07-12)
+      & label:not(:first-of-type) {
+        margin-top: calc($default-value * 2);
+      }
+    }
+
+    &:last-child {
+      th {
+        border-bottom: 0;
+      }
+
+      td {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+//bottom btn area
+.bottomBtnArea {
+  display: flex;
+  justify-content: center;
+  padding-top: calc($default-value * 10);
+  margin-bottom: calc($default-value * 10);
+
+  & button + button {
+    margin-left: calc($default-value * 2);
+  }
+}
+
+//pagenation
+nav.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: calc($default-value * 10) 0;
+
+  & button {
+    @include size(calc($default-value * 6), calc($default-value * 6), 0);
+
+    & + button {
+      margin-left: calc($default-value * 3);
+    }
+
+    & + a {
+      margin-left: calc($default-value * 6);
+    }
+
+    &.first {
+      @include background($elements-path, map-get($elements-position, 'pagingFirst'));
+    }
+
+    &.prev {
+      @include background($elements-path, map-get($elements-position, 'pagingPrev'));
+    }
+
+    &.next {
+      @include background($elements-path, map-get($elements-position, 'pagingNext'));
+    }
+
+    &.last {
+      @include background($elements-path, map-get($elements-position, 'pagingLast'));
+    }
+  }
+
+  & a {
+    display: block;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'light');
+    text-align: center;
+
+    & + button {
+      margin-left: calc($default-value * 6);
+    }
+
+    & + a {
+      margin-left: calc($default-value * 5);
+    }
+
+    &.current {
+      @include size(calc($default-value * 5), calc($default-value * 5), 0);
+      color: map-get($blueLevel, 'level3');
+      border-radius: $default-value;
+    }
+  }
+}
+
+//title
+h3.ttl {
+  padding-left: calc($default-value * 3);
+  padding-bottom: calc($default-value * 2);
+  font-size: map-get($font-size, 'h3');
+  line-height: map-get($line-height, 'h3');
+  color: map-get($grayscale, 'black');
+  font-weight: 600;
+  position: relative;
+  margin-bottom: calc($default-value * 3);
+
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc($default-value * 3);
+    height: calc($default-value * 6.5);
+    @include background($elements-path, map-get($elements-position, 'bullet'));
+  }
+}
+
+h4.ttl {
+  font-weight: 600;
+  font-size: map-get($font-size, 'h4');
+  line-height: map-get($line-height, 'h4');
+  color: map-get($grayscale, 'black');
+  margin-bottom: calc($default-value * 2);
+}
+
+hgroup.ttl {
+  display: flex;
+  @include dpFlex(column, nowrap);
+  justify-content: space-between;
+  min-height: calc($default-value * 6.5);
+  margin-bottom: $default-value;
+
+  &.btn {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  h6 {
+    font-size: map-get($font-size, 'h6');
+    line-height: map-get($line-height, 'h6');
+    color: map-get($validationColor, 'required');
+    text-align: right;
+    font-weight: normal;
+  }
+
+  h5 {
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'dark');
+    text-align: right;
+    font-weight: normal;
+  }
+
+  &.legend {
+    width: 100%;
+    @include dpFlex(row, nowrap);
+
+    & .legend {
+      display: flex;
+      @include dpFlex(row, nowrap);
+      align-items: center;
+
+      span.legend {
+        position: relative;
+        font-size: map-get($font-size, 'h6');
+        line-height: map-get($line-height, 'h6');
+        color: map-get($grayscale, 'medium');
+        display: inline-flex;
+        margin-right: calc($default-value * 4);
+
+        &.box {
+          &.led2::before {
+            background-color: map-get($legendColor, 'lgd2');
+            @extend %boxLegend;
+          }
+
+          &.led3::before {
+            background-color: map-get($legendColor, 'lgd3');
+            @extend %boxLegend;
+          }
+
+          &.led4::before {
+            @extend %boxLegend;
+            background-color: map-get($legendColor, 'lgd4');
+          }
+
+          &.led5::before {
+            background-color: map-get($legendColor, 'lgd5');
+            @extend %boxLegend;
+          }
+
+          &.led6::before {
+            background-color: map-get($legendColor, 'lgd6');
+            @extend %boxLegend;
+          }
+        }
+
+        &.line {
+          &.led1::before {
+            background-color: map-get($legendColor, 'lgd1');
+            @extend %lineLegend;
+          }
+
+          &.led7::before {
+            background-color: map-get($legendColor, 'lgd7');
+            @extend %lineLegend;
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+h1.ttl {
+  font-size: map-get($font-size, 'h4');
+  line-height: map-get($line-height, 'h4');
+  color: map-get($grayscale, 'black');
+  font-weight: 600;
+  width: 50%;
+}
+
+//chart table
+table.chart {
+  thead tr th {
+    padding: calc($default-value * 4);
+    background: map-get($grayscale, 'bg');
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'black');
+    text-align: center;
+    font-weight: normal;
+  }
+
+  tbody tr td {
+    padding: calc($default-value * 4);
+    border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'dark');
+    font-weight: 500;
+
+    & a {
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($blueLevel, 'level3');
+      font-weight: 500;
+      text-decoration: underline;
+    }
+  }
+
+  tfoot:last-child {
+    & tr td,
+    & tr th {
+      border-bottom: calc($default-value / 4) solid map-get($blueLevel, 'level1');
+    }
+  }
+
+  tfoot tr td,
+  tfoot tr th,
+  tbody.tfoot tr td {
+    padding: calc($default-value * 4);
+    border-bottom: calc($default-value / 4) solid map-get($CIColor, 'subBlue');
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'black');
+    text-align: center;
+    background: map-get($grayscale, 'lightBg');
+  }
+}
+
+//card type list 2
+
+.cardListWrap2 {
+  display: flex;
+  @include dpFlex(row, nowrap);
+  gap: calc($default-value * 10) calc($default-value * 10);
+
+  .cardList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: calc($default-value / 4) solid map-get($blueLevel, 'level2');
+    border-radius: $default-value;
+    padding: calc($default-value * 6) calc($default-value * 5) calc($default-value * 5);
+
+    // 메인화면 사용 update: 2024-07-22
+    &.mainCard {
+      background-color: white;
+      border-radius: calc($default-value * 4);
+      border: none;
+      box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.04);
+      & .cardListHead {
+        & .left {
+          font-size: map-get($font-size, 'h3');
+          color: map-get($grayscale, 'dark');
+        }
+        & .right {
+          font-size: map-get($font-size, 'h5');
+          color: map-get($grayscale, 'dark');
+        }
+        // 메인화면 카드 영역의 이미지들
+        // css add : 2024-07-24
+        & .manigingIssuer {
+          @include background('@/assets/img/main/managingIssuer.png', '');
+          width: 6rem;
+          height: 6rem;
+          background-size: contain;
+        }
+        & .issue {
+          @include background('@/assets/img/main/issue.png', '');
+          width: 6rem;
+          height: 6rem;
+          background-size: contain;
+        }
+
+        & .solicitationSales {
+          @include background('@/assets/img/main/solicitationSales.png', '');
+          width: 6rem;
+          height: 6rem;
+          background-size: contain;
+        }
+
+        & .investor {
+          @include background('@/assets/img/main/investor.png', '');
+          width: 6rem;
+          height: 6rem;
+          background-size: contain;
+        }
+
+        & .tokenNumber {
+          @include background('@/assets/img/main/tokenNumber.png', '');
+          width: 6rem;
+          height: 6rem;
+          background-size: contain;
+        }
+      }
+      & .legend {
+        display: flex;
+        @include dpFlex(row, nowrap);
+        justify-content: flex-end;
+        align-items: center;
+        span.legend {
+          position: relative;
+          font-size: map-get($font-size, 'h6');
+          line-height: map-get($line-height, 'h6');
+          color: map-get($grayscale, 'medium');
+          display: inline-flex;
+          margin-right: calc($default-value * 4);
+
+          &.box {
+            &.led2::before {
+              background-color: map-get($legendColor, 'lgd2');
+              @extend %boxLegend;
+            }
+
+            &.led3::before {
+              background-color: map-get($legendColor, 'lgd3');
+              @extend %boxLegend;
+            }
+
+            &.led4::before {
+              @extend %boxLegend;
+              background-color: map-get($legendColor, 'lgd4');
+            }
+
+            &.led5::before {
+              background-color: map-get($legendColor, 'lgd5');
+              @extend %boxLegend;
+            }
+
+            &.led6::before {
+              background-color: map-get($legendColor, 'lgd6');
+              @extend %boxLegend;
+            }
+          }
+
+          &.line {
+            &.led1::before {
+              background-color: map-get($legendColor, 'lgd1');
+              @extend %lineLegend;
+            }
+
+            &.led7::before {
+              background-color: map-get($legendColor, 'lgd7');
+              @extend %lineLegend;
+            }
+          }
+
+          &:last-child {
+            // margin-right: 0;
+          }
+        }
+      }
+    }
+
+    & table.con {
+      th {
+        @extend %cardListTable;
+        color: map-get($grayscale, 'black');
+        &.emphasize {
+          font-size: map-get($font-size, 'h3');
+        }
+      }
+
+      td {
+        @extend %cardListTable;
+        &.emphasize {
+          font-size: map-get($font-size, 'h3');
+          &.mainColor {
+            color: map-get($CIColor, 'main');
+          }
+        }
+      }
+
+      tr:last-child {
+        td,
+        th {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    & .cardListHead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &.colorWhite {
+      background-color: white;
+    }
+    & .cardDetailWrap {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      flex-grow: 1;
+      & .left,
+      .right {
+        width: 100%;
+      }
+      & .left {
+        border-right: 1px solid map-get($grayscale, 'lightBg');
+        &.center {
+          display: flex;
+          justify-content: center;
+        }
+      }
+      & .right {
+        padding-left: 3.5rem;
+      }
+    }
+  }
+}
+
+//table input element + text
+table {
+  td {
+    span.inline {
+      display: inline-block;
+      margin-top: calc($default-value * 0.75);
+      line-height: map-get($line-height, 'h5');
+    }
+  }
+}
+
+//noline table
+table.noline {
+  border-collapse: collapse;
+  border: 0;
+  width: 100%;
+  table-layout: fixed;
+  padding: 0;
+  border-spacing: 0;
+
+  tr {
+    th {
+      padding-bottom: calc($default-value * 8);
+      font-weight: 500;
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'black');
+      text-align: left;
+    }
+    // table 영역 패딩값이 빠져있어 추가
+
+    td {
+      padding-bottom: calc($default-value * 8);
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'dark');
+      font-weight: 500;
+
+      & a {
+        color: map-get($blueLevel, 'level3');
+        text-decoration: underline;
+      }
+    }
+
+    &:only-child {
+      th {
+        padding: 0;
+      }
+      td {
+        padding: 0;
+      }
+    }
+    // table 영역 패딩값이 빠져있어 추가
+    & th:not(:first-of-type) {
+      padding-left: calc($default-value * 8);
+    }
+    &:last-child th,
+    &:last-child td {
+      padding-bottom: 0;
+    }
+  }
+}
+
+//table 상단 unit
+.unitWrap {
+  display: flex;
+  @include dpFlex(row, nowrap);
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: map-get($font-size, 'h6');
+  line-height: map-get($line-height, 'h6');
+  color: map-get($grayscale, 'dark');
+  font-weight: 400;
+  margin-bottom: calc($default-value * 2);
+  // 2024-07-30 add
+  // 토큰증권 신청승인 상세쪽 확인하면서 추가
+  &.vertical {
+    @include dpFlex(column, nowrap);
+  }
+
+  .unit {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    font-weight: inherit;
+    flex-basis: calc($default-value * 50);
+    flex-grow: 0;
+
+    span {
+      color: map-get($CIColor, 'main');
+      font-weight: 500;
+    }
+  }
+
+  .rightItem {
+    flex-grow: 1;
+    display: flex;
+    @include dpFlex(row, nowrap);
+    align-items: center;
+    justify-content: flex-end;
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($blueLevel, 'level3');
+    font-weight: 400;
+
+    &.green {
+      color: map-get($CIColor, 'sub');
+    }
+
+    &.multi {
+      @include dpFlex(column, wrap);
+      align-items: flex-end;
+      justify-content: center;
+    }
+  }
+}
+
+//required item
+th.required {
+  & span {
+    position: relative;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: calc($default-value * -1.75);
+      top: 0;
+      @include size(calc($default-value * 0.75), calc($default-value * 0.75), 0);
+      background: map-get($validationColor, 'required');
+      border-radius: $default-value;
+    }
+  }
+}
+
+.statusBox {
+  padding: calc($default-value * 2) calc($default-value * 5);
+  border-radius: $default-value;
+  background: map-get($CIColor, 'subBlue');
+  font-size: map-get($font-size, 'h4');
+  line-height: map-get($line-height, 'h4');
+  font-weight: 600;
+  color: map-get($CIColor, 'main');
+  margin-bottom: calc($default-value * 20);
+  display: inline-block;
+}
+
+th {
+  & sub {
+    font-size: map-get($font-size, 'h6');
+    line-height: calc($default-value * 3);
+    color: map-get($grayscale, 'dark');
+    font-weight: 500;
+    top: calc($default-value * -3);
+    position: relative;
+  }
+}

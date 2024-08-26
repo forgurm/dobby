@@ -1,0 +1,389 @@
+* {
+  outline: 0 !important;
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+p,
+blockquote,
+pre,
+code,
+address,
+ul,
+ol,
+li,
+menu,
+nav,
+section,
+article,
+aside,
+dl,
+dt,
+dd,
+table,
+thead,
+tbody,
+tfoot,
+label,
+caption,
+th,
+td,
+form,
+fieldset,
+legend,
+hr,
+input,
+button,
+object,
+figure,
+figcaption {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Pretendard', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+html {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-size: 62.5%;
+}
+
+body {
+  width: 100%;
+  background: map-get($grayscale, 'white');
+  min-width: 102.4rem;
+  -webkit-text-size-adjust: none;
+  word-wrap: break-word;
+  word-break: break-all;
+  margin: 0 auto;
+}
+
+body,
+input,
+select,
+button {
+  border: none;
+}
+
+ul {
+  list-style: none;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+img,
+fieldset {
+  border: 0;
+}
+
+address,
+cite,
+code,
+em {
+  font-style: normal;
+  font-weight: 500;
+}
+
+label,
+img,
+input,
+select,
+textarea,
+button {
+  vertical-align: middle;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+caption,
+legend {
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
+}
+
+main,
+header,
+section,
+nav,
+footer,
+aside,
+article,
+figure {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+label {
+  cursor: pointer;
+}
+
+//hidden
+.alternate {
+  @extend %alternate;
+}
+
+//scrollbar style
+*::-webkit-scrollbar {
+  @extend %scroll;
+  background: map-get($grayscale, 'lightBg');
+}
+
+*::-webkit-scrollbar-thumb {
+  @extend %scroll;
+  background: map-get($grayscale, 'line');
+}
+
+//selection
+*::selection {
+  background: map-get($CIColor, 'subLight');
+  color: map-get($grayscale, 'white');
+}
+
+//placehoder
+input::placeholder,
+input::-webkit-input-placeholder,
+textarea::placeholder,
+textarea::-webkit-input-placeholder {
+  color: map-get($grayscale, 'medium');
+}
+
+input:disabled::placeholder,
+input:disabled::-webkit-input-placeholder,
+textarea:disabled::placeholder,
+textarea:disabled::-webkit-input-placeholder {
+  color: map-get($blueLevel, 'level1');
+}
+
+//text align
+.center {
+  text-align: center !important;
+}
+
+.right {
+  text-align: right !important;
+}
+
+.left {
+  text-align: left !important;
+}
+
+//error text
+.error {
+  color: map-get($validationColor, 'error') !important;
+}
+
+//black text
+.black {
+  color: map-get($grayscale, 'black') !important;
+}
+
+.dark {
+  color: map-get($grayscale, 'dark') !important;
+}
+
+.grey {
+  color: map-get($grayscale, 'medium') !important;
+}
+
+//requried text
+.orange {
+  color: map-get($validationColor, 'required') !important;
+}
+
+//main color text
+.blue {
+  color: map-get($CIColor, 'main') !important;
+}
+
+.green {
+  color: map-get($CIColor, 'sub') !important;
+}
+
+//margin
+
+.ml4 {
+  margin-left: $default-value !important;
+}
+
+.ml6 {
+  margin-left: calc($default-value * 1.5) !important;
+}
+
+.ml8 {
+  margin-left: calc($default-value * 2) !important;
+}
+
+.ml12 {
+  margin-left: calc($default-value * 3) !important;
+}
+
+.mb0 {
+  margin-bottom: 0 !important;
+}
+
+.mb6 {
+  margin-bottom: calc($default-value * 1.5) !important;
+}
+
+.mb8 {
+  margin-bottom: calc($default-value * 2) !important;
+}
+
+.mb16 {
+  margin-bottom: calc($default-value * 4) !important;
+}
+
+.mb20 {
+  margin-bottom: calc($default-value * 5) !important;
+}
+
+.mb24 {
+  margin-bottom: calc($default-value * 6) !important;
+}
+
+.mb32 {
+  margin-bottom: calc($default-value * 8) !important;
+}
+
+.mb40 {
+  margin-bottom: calc($default-value * 10) !important;
+}
+
+.mb56 {
+  margin-bottom: calc($default-value * 14) !important;
+}
+
+.mb80 {
+  margin-bottom: calc($default-value * 20) !important;
+}
+
+.mt8 {
+  margin-top: calc($default-value * 2) !important;
+}
+
+.mt16 {
+  margin-top: calc($default-value * 4) !important;
+}
+
+.mt56 {
+  margin-top: calc($default-value * 14) !important;
+}
+
+//padding
+.pl32 {
+  padding-left: calc($default-value * 8) !important;
+}
+
+.pr32 {
+  padding-right: calc($default-value * 8) !important;
+}
+
+.pb16 {
+  padding-bottom: calc($default-value * 4) !important;
+}
+
+.pb8 {
+  padding-bottom: calc($default-value * 2) !important;
+}
+
+.pb32 {
+  padding-bottom: calc($default-value * 8) !important;
+}
+
+.pr0 {
+  padding-right: 0 !important;
+}
+
+.pd0 {
+  padding-bottom: 0 !important;
+}
+
+//display
+
+.dpflex {
+  display: flex !important;
+}
+
+.db {
+  display: block !important;
+}
+
+.dib {
+  display: inline-block !important;
+}
+
+//width
+.w100 {
+  width: 100% !important;
+}
+
+.w85 {
+  width: calc($default-value * 21.25) !important;
+}
+
+.w110 {
+  width: calc($default-value * 27.5) !important;
+}
+
+.w200 {
+  width: calc($default-value * 50) !important;
+}
+
+.wTxt {
+  width: calc(100% - 1.7rem);
+}
+
+//vetical-align
+
+.vaTop {
+  vertical-align: top !important;
+}
+
+.vaMiddle {
+  vertical-align: middle !important;
+}
+
+//자동완성 배경색 지우기
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 3rem #fff inset;
+  -webkit-text-fill-color: #000;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}

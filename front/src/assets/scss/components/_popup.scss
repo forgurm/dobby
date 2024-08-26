@@ -1,0 +1,155 @@
+//dim
+.dim {
+  @include size(100%, 100%, 0);
+  background: map-get($grayscale, 'dim');
+  position: fixed;
+  @include posiVal(0, 0, 0, 0, 1001);
+}
+
+.popup {
+  position: absolute;
+  @include posiVal(50%, '', '', 50%, 1002);
+  border-radius: calc($default-value * 3);
+  background: map-get($grayscale, 'white');
+  //  padding-top 4rem에서 2rem으로 변경
+  // 모든 팝업 확인 필요
+  // css update : 2024-07-23
+  padding: calc($default-value * 6) calc($default-value * 5) calc($default-value * 8)
+    calc($default-value * 5);
+  box-shadow: 0 $default-value calc($default-value * 4) rgba(0, 0, 0, 0.16);
+
+  // 확정투자자명부 확인 팝업 scroll 및 th 영역 고정 update: 2024-07-22
+  & .checkList.scroll {
+    // th 고정
+    & th {
+      position: sticky;
+      top: 0;
+    }
+    height: calc($default-value * 82);
+    overflow: auto;
+  }
+
+  &.type2 {
+    padding-top: calc($default-value * 6);
+  }
+
+  & p {
+    font-size: map-get($font-size, 'h5');
+    line-height: map-get($line-height, 'h5');
+    color: map-get($grayscale, 'dark');
+    // css add : 2024-07-23
+    &.center {
+      text-align: center;
+    }
+    // 전자지갑 생성완료 팝업에서 전자문서지갑주소 강조 하기 위한 작업
+    // css add : 2024-07-23
+    &.Emphasize {
+      color: map-get($CIColor, 'main');
+    }
+  }
+
+  & button.close {
+    position: relative;
+    left: calc(100% - ($default-value * 4));
+    @include size(calc($default-value * 4), calc($default-value * 4.5), '');
+    @include background($elements-path, map-get($elements-position, 'popupBtnClose'));
+    background-color: transparent;
+  }
+
+  & h1 {
+    min-height: calc($default-value * 6.5);
+    font-size: map-get($font-size, 'h3');
+    line-height: map-get($line-height, 'h3');
+    margin-bottom: calc($default-value * 5);
+    color: map-get($grayscale, 'black');
+    font-weight: 500;
+    text-align: center;
+  }
+
+  & .btnArea {
+    margin-top: calc($default-value * 5);
+    @include size(100%, calc($default-value * 9.5), 0);
+    display: flex;
+    @include dpFlex(row, nowrap);
+    align-items: flex-end;
+
+    button {
+      @include size(
+        100%,
+        calc($default-value * 9.5),
+        calc($default-value * 2) calc($default-value * 4.5) calc($default-value * 1.5)
+      );
+      min-width: 50%;
+      text-align: center;
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'white');
+      border-radius: $default-value;
+      background: map-get($CIColor, 'main');
+      font-weight: 500;
+
+      &.line {
+        background: map-get($CIColor, 'subBlue');
+        color: map-get($CIColor, 'main');
+      }
+
+      & + button {
+        margin-left: calc($default-value * 2);
+      }
+    }
+  }
+
+  input[type='text'] {
+    padding-top: calc($default-value * 2.75);
+    padding-bottom: calc($default-value * 1.75);
+  }
+
+  label.edit {
+    button {
+      top: calc($default-value * 3.5);
+    }
+  }
+
+  & table {
+    & th {
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'black');
+      font-weight: 500;
+    }
+
+    & td {
+      font-size: map-get($font-size, 'h5');
+      line-height: map-get($line-height, 'h5');
+      color: map-get($grayscale, 'dark');
+      font-weight: 500;
+    }
+
+    & a {
+      padding-left: calc($default-value * 1.5);
+      text-decoration: underline;
+      color: map-get($blueLevel, 'level3');
+
+      &::before {
+        content: '·';
+        display: inline-block;
+        color: map-get($blueLevel, 'level3');
+        font-size: map-get($font-size, 'h5');
+        line-height: map-get($line-height, 'h5');
+        width: calc($default-value * 1.5);
+      }
+    }
+  }
+  // 전자문서지갑 발급 로딩 영역
+  .loadingBarWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    .loaidngBar {
+      @include size(6rem, 6rem, '');
+      @include background('@/assets/img/loading/loading_icon.gif', '');
+      background-size: contain;
+    }
+  }
+}
