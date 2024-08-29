@@ -5,13 +5,11 @@ import instance from '@/assets/api/commonAxios'
 import loginReq from '@/entities/login/loginReq'
 import commonCodeReq from '@/entities/commonCode/commonCodeReq'
 import mainReq from '@/entities/main/mainReq'
-import approvalProcessingReq from '@/entities/approvalProcessing/approvalProcessingReq'
 
 //entities res import
 import loginRes from '@/entities/login/loginRes'
 import commonCodeRes from '@/entities/commonCode/commonCodeRes'
 import mainRes from '@/entities/main/mainRes'
-import approvalProcessingRes from '@/entities/approvalProcessing/approvalProcessingRes'
 const adminApi = {}
 
 /* 로그인 화면 Api */
@@ -21,7 +19,7 @@ adminApi.login = {
     return new Promise((resolve, reject) => {
       instance({
         method: 'post',
-        url: '/api/auth/login',  // Changed to match backend route
+        url: '/auth/login',  // Changed to match backend route
         headers: '',
         reqFormat: loginReq.userLogin,
         request,
@@ -38,7 +36,7 @@ adminApi.commonCode = {
     return new Promise((resolve, reject) => {
       instance({
         method: 'post',
-        url: '/api/common-code',  // Adjusted to match backend route
+        url: '/common-code',  // Adjusted to match backend route
         headers: '',
         reqFormat: commonCodeReq.stieAmnComnC,
         request,
@@ -52,150 +50,73 @@ adminApi.commonCode = {
 
 ////////////////////////////////////
 
-/**
- * 메인화면 호출
- * */
-adminApi.applicationApproval = {
-  mainDashboard: (request) => {
+/* 메인화면 관련 API */
+adminApi.main = {
+  // Bot List 호출
+  botList: (request) => {
     return new Promise((resolve, reject) => {
       instance({
         method: 'get',
-        url: '/api/dashBoard',
+        url: '/main/botList', // botList 경로 호출
         headers: '',
-        reqFormat: MainReq.getApplicationApprovalList,
+        reqFormat: mainReq.botList,
         request,
-        resFormat: MainRes.getApplicationApprovalList,
+        resFormat: mainRes.botList,
         resolve,
         reject
-      })
-    })
-  },
-
-  main: (request) => {
-    return new Promise((resolve, reject) => {
-      //console.log('appAppRq:', request); // 로그 추가
-      instance({
-        method: 'post',
-        url: '/main/dashboard',
-        headers: '',
-        reqFormat: MainReq.getDashboardPage,
-        request,
-        resFormat: MainRes.getDashBoardPage,
-        resolve,
-        reject
-      })
-    })
-  },
-  
-  /* 4. 요청 거절 Api */
-  appAppRej: (request) => {
-    return new Promise((resolve, reject) => {
-      //console.log('appAppRej:', request); // 로그 추가
-      instance({
-        method: 'post',
-        url: '/amnpotl/tokenscts/rq-apv/rej',
-        headers: '',
-        reqFormat: applicationApprovalReq.getApplicationApprovalDetailPageRej,
-        request,
-        resFormat: applicationApprovalRes.getApplicationApprovalDetailPageRej,
-        resolve,
-        reject
-      })
-    })
-  }
-}
-
-////////////////////////////////////
-
-/**
- * 메인화면 호출
-* */
-adminApi.approvalProcessing = {
-  /* 1. 목록조회 Api */
-  rqApvList: (request) => {
-    return new Promise((resolve, reject) => {
-      instance({
-        method: 'post',
-        url: '/amnpotl/tokenscts/apv-prc/rqr-list',
-        headers: '',
-        reqFormat: approvalProcessingReq.getApprovalProcessingList,
-        request,
-        resFormat: approvalProcessingRes.getApprovalProcessingList,
-        resolve,
-        reject
-      })
-    })
-  },
-
-  /* 1. 상세조회 Api */
-  rqApvDetail: (request) => {
-    // 함수 호출 로그 찍기
-    return new Promise((resolve, reject) => {
-      instance({
-        method: 'post',
-        url: '/amnpotl/tokenscts/apv-prc/rqr-dtl',
-        headers: '',
-        reqFormat: approvalProcessingReq.getApprovalProcessingDetailPage,
-        request,
-        resFormat: approvalProcessingRes.getApprovalProcessingDetailPage,
-        resolve,
-        reject
-      })
+      });
     });
   },
 
-  /* 3. 요청처리 Api */
-  rqApvDetailrq: (request) => {
+  // Member List 호출
+  memberList: (request) => {
     return new Promise((resolve, reject) => {
       instance({
-        method: 'post',
-        url: '/amnpotl/tokenscts/apv-prc/rqr-prc',
+        method: 'get',
+        url: '/main/memberList', // memberList 경로 호출
         headers: '',
-        reqFormat: approvalProcessingReq.getApprovalProcessingReqPrc,
+        reqFormat: mainReq.memberList,
         request,
-        resFormat: approvalProcessingRes.getApprovalProcessingReqPrc,
+        resFormat: mainRes.memberList,
         resolve,
         reject
-      })
-    })
+      });
+    });
   },
 
-  /* 4. 발행취소 Api */
-  rqApvDetailrej: (request) => {
+  // Symbol Status 호출
+  symbolStatus: (request) => {
     return new Promise((resolve, reject) => {
       instance({
-        method: 'post',
-        url: '/amnpotl/tokenscts/apv-prc/pbc-can',
+        method: 'get',
+        url: '/main/symbolStatus', // symbolStatus 경로 호출
         headers: '',
-        reqFormat: approvalProcessingReq.getApprovalProcessingReqCan,
+        reqFormat: mainReq.symbolStatus,
         request,
-        resFormat: approvalProcessingRes.getApprovalProcessingReqCan,
+        resFormat: mainRes.symbolStatus,
         resolve,
         reject
-      })
-    })
-  }
-}
+      });
+    });
+  },
 
-////////////////////////////////////
-
-/* 토큰증권현황 api */
-adminApi.securityToken = {
-  psttList: (request) => {
+  // Symbol List 호출
+  symbolList: (request) => {
     return new Promise((resolve, reject) => {
       instance({
-        method: 'post',
-        url: '/amnpotl/tokenscts/tokenscts/pstt/list',
+        method: 'get',
+        url: '/main/symbolList', // symbolList 경로 호출
         headers: '',
-        reqFormat: {}, // entities> request 만들어서 적용
+        reqFormat: mainReq.symbolList,
         request,
-        resFormat: {}, // entities> response 만들어서 적용
+        resFormat: mainRes.symbolList,
         resolve,
         reject
-      })
-    })
+      });
+    });
   }
-}
+};
+
 
 /* 발행인 현황 Api */
 

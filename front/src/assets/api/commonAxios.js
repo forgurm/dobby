@@ -1,40 +1,34 @@
 import axios from 'axios';
 import store from '@/store';
 
+// Axios 기본 인스턴스 설정
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8081/api', // 모든 요청에 /api 경로가 자동으로 추가됨
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
+
 const instance = (axiosData) => {
-  // Show LoadingBar
   store.commit('service/setLoadingBar');
   
-  // Request data format handling
   let req = axiosData.request ? axiosData.reqFormat(axiosData.request) : '';
 
-  // Send the Axios request
-  axios({
+  axiosInstance({
     method: axiosData.method || 'GET',
-    url: `/api${axiosData.url}`, // Assuming your backend API is proxied through /api
+    url: axiosData.url, // url에는 /api 이후 경로만 넣으면 됩니다.
     headers: {
       Authorization: `Bearer ${store.state.service.login.userToken}` || '',
-      'Content-Type': 'application/json',
       ...axiosData.headers
     },
     data: req
   })
   .then((response) => {
-    // Hide LoadingBar
     store.commit('service/setLoadingBarClose');
-    
     const res = axiosData.resFormat(response.data);
-
-    if (res.code === 100) {
-      axiosData.resolve(res);
-    } else {
-      // Handle other response codes
-      console.error('Error in response:', res);
-      axiosData.reject(res);
-    }
+    axiosData.resolve(res);
   })
   .catch((error) => {
-    // Hide LoadingBar and handle errors
     store.commit('service/setLoadingBarClose');
     console.error('Axios error:', error);
     axiosData.reject(error);

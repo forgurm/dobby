@@ -19,40 +19,31 @@ const importFunction = (files, array) => {
 importFunction(publishFiles, publish)
 importFunction(frontFiles, front)
 
+// routes 추가할때는 router/front/내에 js파일명을 동일하게 맞춰야함
 const routes = [
   {
     path: '/root',
     name: 'root',
     component: root
   },
-  {
-    path: '/publish/component',
-    name: 'component',
-    component: () => import('../publish/component.vue')
-  },
   ...front.main,
-  ...front.accountManagement,
-  ...front.applicationApproval,
-  ...front.approvalProcessing,
+  ...front.members,
+  ...front.botList,
+  ...front.account,
+  ...front.schedule,
+  ...front.education,
+  ...front.faQ,
+  ...front.qnA,
+  ...front.notice,
+  ...front.symbolList,
+  ...front.promotion,
   ...front.currentSituation,
   ...front.login,
-  ...front.monitoring,
   ...front.mypage,
-  ...front.notice,
   ...front.siteManagement,
-  ...front.statics,
-  ...publish.main,
-  ...publish.accountManagement,
-  ...publish.applicationApproval,
-  ...publish.approvalProcessing,
-  ...publish.currentSituation,
-  ...publish.login,
-  ...publish.monitoring,
-  ...publish.mypage,
-  ...publish.notice,
-  ...publish.siteManagement,
-  ...publish.statics
+  ...front.statics
 ]
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

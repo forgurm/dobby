@@ -11,12 +11,16 @@
             >메인메뉴</a>
         </li>
         <li :class="{ current: lnbClick.approvalprocessingList }">
-          <a href="javascript:void(0);" @click="routerPush('member')"
+          <a href="javascript:void(0);" @click="routerPush('members')"
             >회원관리</a>
         </li>
         <li :class="{ current: lnbClick.approvalprocessingList }">
-          <a href="javascript:void(0);" @click="routerPush('bot')"
+          <a href="javascript:void(0);" @click="routerPush('botList')"
             >봇관리</a>
+        </li>
+        <li :class="{ current: lnbClick.approvalprocessingList }">
+          <a href="javascript:void(0);" @click="routerPush('symbolList')"
+            >심볼관리</a>
         </li>
         <li :class="{ current: lnbClick.approvalprocessingList }">
           <a href="javascript:void(0);" @click="routerPush('account')"
@@ -36,29 +40,6 @@
             </li>
           </ul>
         </li>
-        <!--
-        <li class="more" :class="{ current: lnbDepth.accountManagement }">
-          // 클릭시 depth1에 current class 붙으며 depth2 열림
-          <a href="javascript:void(0);" @click="lnbDepthFunc('accountManagement')">계정관리</a>
-          <ul class="depth2">
-            <li v-for="(list, index) in lnbMenu.accountManagement" :key="index">
-              <a href="javascript:void(0);" @click="routerPush(list.routerName)">{{
-                list.korTitle
-              }}</a>
-            </li>
-          </ul>
-        </li>
-        <li class="more" :class="{ current: lnbDepth.siteManagement }">
-          <a href="javascript:void(0);" @click="lnbDepthFunc('siteManagement')">사이트관리</a>
-          <ul class="depth2">
-            <li v-for="(list, index) in lnbMenu.siteManagement" :key="index">
-              <a href="javascript:void(0);" @click="routerPush(list.routerName)">{{
-                list.korTitle
-              }}</a>
-            </li>
-          </ul>
-        </li>
-        -->
       </ul>
 
     </main>
@@ -241,7 +222,7 @@ const lnbMenu = {
   board: [
     {
       korTitle: '공지사항',
-      routerName: 'announce'
+      routerName: 'noticeList'
     },
     {
       korTitle: 'FAQ',
@@ -249,29 +230,15 @@ const lnbMenu = {
     },
     {
       korTitle: 'QNA',
-      routerName: 'qna'
+      routerName: 'qnA'
     },
     {
       korTitle: '교육자료',
-      routerName: 'edu'
+      routerName: 'education'
     },
     {
       korTitle: '홍보',
-      routerName: 'broadcast'
-    }
-  ],
-  accountManagement: [
-    {
-      korTitle: '발행인',
-      routerName: 'accountManagementPublisherList'
-    },
-    {
-      korTitle: '계좌관리기관',
-      routerName: 'accountManagementManagerList'
-    },
-    {
-      korTitle: '시스템운영자',
-      routerName: 'accountManagementSystemManagerList'
+      routerName: 'promotion'
     }
   ],
   siteManagement: [

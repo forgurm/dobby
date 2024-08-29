@@ -22,29 +22,7 @@
           <th class="left">비밀번호</th>
           <td class="left"><button type="button" class="medium">비밀번호변경</button></td>
         </tr>
-        <tr>
-          <th class="left">금융기관구분</th>
-          <td class="left">은행</td>
-          <th class="left">기관코드</th>
-          <td class="left">010</td>
-        </tr>
-        <tr>
-          <th class="left">금융기관명</th>
-          <td class="left">###은행</td>
-          <th class="left">대표자명</th>
-          <td class="left">김은행</td>
-        </tr>
-        <tr>
-          <th class="left">사업자등록번호</th>
-          <td class="left">000-00-00000</td>
-          <th class="left">법인등로번호</th>
-          <td class="left">000000-0000000</td>
-        </tr>
         <!-- 전자지갑 주소가 있을 때, 표시 v-if -->
-        <tr>
-          <th class="left">전자지갑주소</th>
-          <td class="left">1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71</td>
-        </tr>
       </tbody>
     </table>
     <div class="cautionBlue">
